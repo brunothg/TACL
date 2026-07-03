@@ -1,0 +1,4 @@
+TACL is a powerful call filtering app for Android power users.
+It allows you to define complex rules to intercept and manage incoming calls, ensuring you only hear from the people you want.
+
+The complete documentation and manual can be found directly in the <a href="https://codeberg.org/brunothg/TACL">Repository on Codeberg</a>.

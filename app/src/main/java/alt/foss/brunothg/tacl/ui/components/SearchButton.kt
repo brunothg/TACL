@@ -1,0 +1,53 @@
+/*
+ * Copyright (c) 2026. brunothg
+ *
+ * This program is licensed under the GNU General Public License version 3
+ * or (at your option) any later version. See the LICENSE file for details.
+ *
+ * See the LICENSE file for the full license text.
+ *
+ */
+
+package alt.foss.brunothg.tacl.ui.components
+
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import alt.foss.brunothg.tacl.R
+import alt.foss.brunothg.tacl.ui.theme.TaclPreview
+
+/**
+ * A search button.
+ *
+ * @param onSearch Callback when the button is clicked.
+ * @param modifier The modifier to be applied to the button.
+ */
+@Composable
+fun SearchButton(
+    onSearch: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    IconButton(
+        onClick = onSearch,
+        modifier = modifier,
+    ) {
+        Icon(
+            painter = painterResource(R.drawable.ic_m3_search),
+            contentDescription = stringResource(R.string.misc_action_search),
+        )
+    }
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewSearchButton() {
+    TaclPreview {
+        SearchButton(
+            onSearch = {}
+        )
+    }
+}

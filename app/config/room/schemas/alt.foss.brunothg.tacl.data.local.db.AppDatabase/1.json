@@ -1,0 +1,99 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "be33357ecb1137c5107886d8aece7771",
+    "entities": [
+      {
+        "tableName": "call_filters",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `order_index` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT, `enabled` INTEGER NOT NULL, `invert_match` INTEGER NOT NULL, `matcher` TEXT NOT NULL, `action_block` TEXT, `action_ring` INTEGER, `action_notification` INTEGER, `action_call_log` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "orderIndex",
+            "columnName": "order_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "enabled",
+            "columnName": "enabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "invertMatch",
+            "columnName": "invert_match",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "matcher",
+            "columnName": "matcher",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "action.block",
+            "columnName": "action_block",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "action.ring",
+            "columnName": "action_ring",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "action.notification",
+            "columnName": "action_notification",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "action.callLog",
+            "columnName": "action_call_log",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_call_filters_order_index",
+            "unique": true,
+            "columnNames": [
+              "order_index"
+            ],
+            "orders": [
+              "ASC"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_call_filters_order_index` ON `${TABLE_NAME}` (`order_index` ASC)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'be33357ecb1137c5107886d8aece7771')"
+    ]
+  }
+}

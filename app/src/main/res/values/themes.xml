@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright (c) 2026. brunothg
+  ~
+  ~ This program is licensed under the GNU General Public License version 3
+  ~ or (at your option) any later version. See the LICENSE file for details.
+  ~
+  ~ See the LICENSE file for the full license text.
+  ~
+  -->
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">?android:attr/colorBackground</item>
+        <item name="windowSplashScreenIconBackgroundColor">?android:attr/colorBackground</item>
+        <item name="postSplashScreenTheme">@android:style/Theme.Material.NoActionBar</item>
+    </style>
+</resources>

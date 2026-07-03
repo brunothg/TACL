@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2026. brunothg
+  ~
+  ~ This program is licensed under the GNU General Public License version 3
+  ~ or (at your option) any later version. See the LICENSE file for details.
+  ~
+  ~ See the LICENSE file for the full license text.
+  ~
+  -->
+<resources>
+    <string name="app_name" translatable="false">TACL</string>
+
+    <string name="misc_action_search">Search</string>
+    <string name="misc_action_filter">Filter</string>
+    <string name="misc_action_back">Back</string>
+    <string name="misc_action_next">Next</string>
+    <string name="misc_action_done">Done</string>
+    <string name="misc_action_start">Start</string>
+    <string name="misc_action_stop">Stop</string>
+    <string name="misc_action_add">Add</string>
+    <string name="misc_action_remove">Remove</string>
+    <string name="misc_action_new">New</string>
+    <string name="misc_action_save">Save</string>
+    <string name="misc_action_delete">Delete</string>
+    <string name="misc_action_default">Default</string>
+    <string name="misc_action_open_menu">Open menu</string>
+    <string name="misc_action_cancel">Cancel</string>
+    <string name="misc_action_ok">OK</string>
+
+    <string name="misc_state_on">On</string>
+    <string name="misc_state_off">Off</string>
+    <string name="misc_state_active">Active</string>
+    <string name="misc_state_inactive">Inactive</string>
+    <string name="misc_state_indefinite">Indefinite</string>
+    <string name="misc_state_disabled">Disabled</string>
+    <string name="misc_state_enabled">Enabled</string>
+    <string name="misc_state_default">Default</string>
+
+    <string name="misc_value_unknown">Unknown value</string>
+    <string name="misc_value_loading">Loading…</string>
+    <string name="misc_value_default">Default</string>
+
+    <string name="filter_action_system_default_description">System default</string>
+    <string name="filter_action_block_ignore_description">Ignore calls</string>
+    <string name="filter_action_block_hangup_description">Hangup calls</string>
+    <string name="filter_action_ring_on_description">Do ring</string>
+    <string name="filter_action_ring_off_description">Do not ring</string>
+    <string name="filter_action_notification_on_description">Show notification</string>
+    <string name="filter_action_notification_off_description">Do not show notification</string>
+    <string name="filter_action_call_log_on_description">Log call</string>
+    <string name="filter_action_call_log_off_description">Do not log call</string>
+
+    <string name="filter_editor_title">Call Filter</string>
+    <string name="filter_editor_enable_disable_switch_label">Enabled</string>
+    <string name="filter_editor_name_label">Name</string>
+    <string name="filter_editor_description_label">Description</string>
+    <string name="filter_editor_order_index_label">Position</string>
+    <string name="filter_editor_order_index_first_label">First</string>
+    <string name="filter_editor_order_index_last_label">Last</string>
+    <string name="filter_editor_action_section_title">Action</string>
+    <string name="filter_editor_action_block_label">Block</string>
+    <string name="filter_editor_action_block_ignore_label">Ignore</string>
+    <string name="filter_editor_action_block_hangup_label">Hangup</string>
+    <string name="filter_editor_action_ring_label">Ring</string>
+    <string name="filter_editor_action_notification_label">Notification</string>
+    <string name="filter_editor_action_call_log_label">Call log</string>
+    <string name="filter_editor_matcher_section_title">Matcher</string>
+    <string name="filter_editor_matcher_invert_label">Invert</string>
+    <string name="filter_editor_regex_matcher_regex_label">Regular expression</string>
+    <string name="filter_editor_regex_matcher_error_invalid_regex">This is not a valid regular expression</string>
+
+    <string name="setup_page_welcome_heading">Let\'s TACL them all</string>
+    <string name="setup_page_welcome_heading_sub">Intercept the noise</string>
+    <string name="setup_page_welcome_info">
+        I’ll help you get your calls under control so you’re no longer disturbed by unwanted callers.\n
+        \n
+        But first, we need to set up the app in the following steps.
+    </string>
+
+    <string name="setup_page_eula_heading">End User License Agreement</string>
+    <string name="setup_page_eula_content">
+        End-User License Agreement (EULA)\n
+        \n
+        \n
+        1. Licensing and Open Source\n
+        \n
+        This application ("the App") is free software.
+        It is distributed under the terms of the specific open-source license attached to this software (see below).
+        By using the App, you agree to be bound by the terms of that license.
+        In the event of any conflict between this EULA and that license, the terms of the license shall prevail.\n
+        \n
+        \n
+        2. Disclaimer of Warranty\n
+        \n
+        · TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE APP IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED.\n
+        · There is no guarantee regarding the functionality, accuracy, availability, or suitability of the App for a particular purpose.\n
+        · The entire risk as to the quality and performance of the App is with the user.\n
+        \n
+        \n
+        3. Limitation of Liability\n
+        \n
+        · IN NO EVENT SHALL THE DEVELOPER / COPYRIGHT HOLDER BE LIABLE FOR ANY DAMAGES WHATSOEVER ARISING OUT OF THE USE OR INABILITY TO USE THE APP.\n
+        · This includes, without limitation, direct, indirect, incidental, special, or consequential damages, lost profits, loss of data, system failures, or damage to hardware and other software.\n
+        · This limitation applies even if the developer has been advised of the possibility of such damages.\n
+        \n
+        \n
+        4. Severability and Local Laws\n
+        \n
+        Some jurisdictions do not allow the exclusion or limitation of certain warranties or liabilities.
+        In such cases, the developer\'s liability shall be limited to the maximum extent permitted by the applicable law of that jurisdiction.
+    </string>
+
+    <string name="setup_page_privacy_policy_heading">Privacy Policy</string>
+    <string name="setup_page_privacy_policy_content">
+        Privacy Policy\n
+        \n
+        \n
+        1. General Information\n
+        \n
+        The protection of your personal data is of utmost importance.
+        This privacy policy informs you about how this application ("the App") handles your data.\n
+        \n
+        \n
+        2. No Data Transmission\n
+        \n
+        · Local storage only: The App processes and stores all data exclusively on your local device.\n
+        · No server connectivity: The app does not connect to the internet, does not use external cloud services, and does not transmit any information to the developer or any third parties.\n
+        · No analytics or tracking: The App do not use any tracking tools, analytics software, or advertising identifiers to monitor your behavior.\n
+        \n
+        \n
+        3. Device Permissions\n
+        \n
+        The App only requests technical permissions from your operating system that are strictly necessary for its local functionality (e.g. local storage access, call screening).\n
+        \n
+        \n
+        4. Data Deletion\n
+        \n
+        Since all data is stored locally on your device, you have full control over it.
+        You can delete all processed data at any time by clearing the App\'s cache and data or by uninstalling the App completely.
+    </string>
+
+    <string name="setup_page_permissions_heading">Permissions</string>
+    <string name="setup_page_permissions_intro">
+        To perform its function, the app requires certain permissions.
+        These permissions are divided into two categories: application permissions and runtime permissions.\n
+        Application permissions are granted upon installation and cannot be revoked.\n
+        Runtime permissions, on the other hand, are requested only when a feature requiring them is used.
+        Users can revoke or re-grant these permissions at any time via the app\'s system settings.\n
+        Please note that some app features may not function if these permissions are revoked.\n
+        Additionally, this app requires the role of a call screening service to enable call filtering.
+    </string>
+    <string name="setup_page_permissions_request_call_screening_service">Request call screening service now?</string>
+
+    <string name="nav_tacl_label">TACL</string>
+    <string name="nav_tacl_description">Telephone access list</string>
+    <string name="nav_settings_label">Settings</string>
+    <string name="nav_settings_description">Application settings</string>
+    <string name="nav_log_label">Log</string>
+    <string name="nav_log_description">Call filter log</string>
+    <string name="nav_debug_label">Debug</string>
+    <string name="nav_debug_description">Call filter debugging</string>
+
+    <string name="screen_tacl_label">TACL</string>
+    <string name="screen_tacl_editor_label">Editor</string>
+    <string name="screen_tacl_on_off_action_description">Activate/deactivate call screening service</string>
+    <string name="screen_tacl_no_selection_message">Please select a call filter</string>
+    <string name="screen_tacl_no_data_message">Please add your first call filter</string>
+
+    <string name="screen_settings_label">Settings</string>
+    <string name="screen_settings_call_screening_role_label">Call screening</string>
+    <string name="screen_settings_call_screening_role_description">Enable/disable call screening service</string>
+    <string name="screen_settings_call_region_label">Call region</string>
+    <string name="screen_settings_call_region_description">Set the call region to auto-detect or a custom value</string>
+    <string name="screen_settings_call_region_auto_detect_label">Auto</string>
+    <string name="screen_settings_call_region_auto_detect_permissionless_label">Auto!</string>
+    <string name="screen_settings_libraries_label">Libraries</string>
+    <string name="screen_settings_libraries_description">Open source components used in this app</string>
+    <string name="screen_settings_app_info_label">App information</string>
+    <string name="screen_settings_app_info_name">Name</string>
+    <string name="screen_settings_app_info_version">Version</string>
+    <string name="screen_settings_app_info_vcs">Source</string>
+    <string name="screen_settings_app_info_vcs_url" translatable="false">https://codeberg.org/brunothg/TACL</string>
+
+    <string name="screen_libraries_label">Libraries</string>
+    <string name="screen_libraries_confirm">OK</string>
+    <string name="screen_libraries_action_source">Source</string>
+    <string name="screen_libraries_action_website">Website</string>
+    <string name="screen_libraries_action_sponsor">Sponsor</string>
+    <string name="screen_libraries_action_license">View license</string>
+
+</resources>

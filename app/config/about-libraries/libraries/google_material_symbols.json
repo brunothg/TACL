@@ -1,0 +1,24 @@
+{
+  "uniqueId": "google_material_symbols",
+  "artifactVersion": "",
+  "name": "Material Symbols",
+  "description": "Google's Material Symbols",
+  "website": "https://fonts.google.com/icons",
+  "developers": [
+    {
+      "name": "Google LLC",
+      "homePage": "https://google.com"
+    }
+  ],
+  "organization": {
+    "name": "Google LLC"
+  },
+  "scm": {
+    "connection": "scm:git:https://github.com/google/material-design-icons.git",
+    "url": "https://github.com/google/material-design-icons"
+  },
+  "licenses": [
+    "Apache-2.0"
+  ],
+  "funding": []
+}
