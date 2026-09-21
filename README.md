@@ -13,8 +13,7 @@ to intercept and manage incoming calls, ensuring you only hear from the people y
 
 - **Regex Matching**: Match incoming numbers using powerful regular expressions.
 - **Custom Actions**: Choose whether to ignore, hang up, silence, or hide calls from your log.
-- **Priority-based Filtering**: Rules are applied in a specific order, allowing for fine-grained
-  control.
+- **Priority-based Filtering**: Rules are applied in a specific order, allowing for fine-grained control.
 - **Privacy First**: No internet access, no tracking, all data stays on your device. For more details about permissions and their usage see [Permissions](docs/Permissions.md)
 
 ## Getting Started
@@ -24,7 +23,7 @@ the [Installation Guide](docs/InstallationGuide.md).
 
 [<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png?raw=true"
 alt="Get it on Obtainium"
-height="80">](https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://codeberg.org/brunothg/TACL)
+height="80">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://codeberg.org/brunothg/TACL)
 
 [<img src="https://get-it-on.codeberg.org/get-it-on-blue-on-white.png"
 alt="Get it on Codeberg"
