@@ -159,7 +159,8 @@ if [[ -n "$keystore" && ( ! -f "$keystore" || ! -r "$keystore" ) ]]
 then
 	echo "Error: '$keystore' is not a readable file" >&2
 	exit 1
-else
+elif [[ -n "$keystore" ]]
+then
 	: "${keystore_pswd:="${KEYSTORE_PSWD:-}"}"
 	if [[ -z "$keystore_pswd" ]]
 	then
