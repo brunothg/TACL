@@ -1,0 +1,10 @@
+# Add project specific ProGuard rules here.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Turn off identifier minification
+-dontobfuscate
+
+# Keep debugging information
+-keepattributes SourceFile, LineNumberTable
