@@ -171,6 +171,7 @@ fun BlockType.getLabel(): String {
     return when (this) {
         BlockType.IGNORE -> stringResource(R.string.filter_editor_action_block_ignore_label)
         BlockType.HANGUP -> stringResource(R.string.filter_editor_action_block_hangup_label)
+        BlockType.NONE -> stringResource(R.string.filter_editor_action_block_none_label)
     }
 }
 

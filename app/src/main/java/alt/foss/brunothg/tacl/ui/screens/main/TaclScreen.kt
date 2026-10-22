@@ -17,15 +17,16 @@ import alt.foss.brunothg.tacl.bl.repository.CallFilterRepository
 import alt.foss.brunothg.tacl.misc.ID
 import alt.foss.brunothg.tacl.misc.LoadState
 import alt.foss.brunothg.tacl.misc.LoadState.Loading.valueOrNull
-import alt.foss.brunothg.tacl.ui.components.BackButton
-import alt.foss.brunothg.tacl.ui.components.LoadingIndicator
-import alt.foss.brunothg.tacl.ui.components.PermissionIndicator
+import alt.foss.brunothg.tacl.ui.components.misc.BackButton
+import alt.foss.brunothg.tacl.ui.components.misc.LoadingIndicator
+import alt.foss.brunothg.tacl.ui.components.permission.PermissionIndicator
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterEditor
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterEditorUiState
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterEditorUiState.Companion.toUiState
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterListItem
-import alt.foss.brunothg.tacl.ui.components.rememberPermissionRequestLauncher
+import alt.foss.brunothg.tacl.ui.components.permission.rememberPermissionRequestLauncher
 import alt.foss.brunothg.tacl.ui.misc.Delayed
+import alt.foss.brunothg.tacl.ui.misc.PreviewUtils.withPreviewFallback
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 import android.os.Parcelable
 import android.util.Log
@@ -254,8 +255,10 @@ class HiltTaclViewModel @Inject constructor(
 @Composable
 fun TaclScreen(
     navigation: ScreenNavigation,
-    modifier: Modifier = Modifier,
-    viewModel: TaclViewModel = hiltViewModel<HiltTaclViewModel>(),
+    viewModel: TaclViewModel = withPreviewFallback(
+        { hiltViewModel<HiltTaclViewModel>() },
+        { buildPreviewTaclViewModel() }
+    ),
 ) {
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -331,7 +334,6 @@ fun TaclScreen(
                 )
             }
         },
-        modifier = modifier,
     )
 
 }
@@ -632,7 +634,7 @@ private fun TaclDetailPaneFAB(
     onSave: (CallFilter) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val editorIsSavable = editorState?.isValid // TODO add dirty state
+    val editorIsSavable = editorState?.isValid
 
     if (editorIsSavable != null) {
         FloatingActionButton(
@@ -661,6 +663,8 @@ private fun TaclDetailPaneTopBar(
     onDelete: (CallFilterSelection) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var menuExpanded by remember { mutableStateOf(false) }
+
     val onBack: (() -> Unit)? = selection.let {
         if (it !is CallFilterSelection.None) ({
             onSelect(CallFilterSelection.None)
@@ -684,7 +688,6 @@ private fun TaclDetailPaneTopBar(
             }
         },
         actions = {
-            var menuExpanded by remember { mutableStateOf(false) }
             IconButton(
                 onClick = {
                     menuExpanded = !menuExpanded
@@ -695,29 +698,13 @@ private fun TaclDetailPaneTopBar(
                     contentDescription = stringResource(R.string.misc_action_open_menu)
                 )
             }
-            DropdownMenu(
+            TaclDetailPaneTopBarDropdownMenu(
                 expanded = menuExpanded,
-                onDismissRequest = {
+                onDismiss = {
                     menuExpanded = false
-                }
-            ) {
-                DropdownMenuItem(
-                    text = {
-                        Text(stringResource(R.string.misc_action_delete))
-                    },
-                    leadingIcon = {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_m3_delete),
-                            contentDescription = stringResource(R.string.misc_action_save),
-                        )
-                    },
-                    onClick = {
-                        menuExpanded = false
-                        onDelete?.invoke()
-                    },
-                    enabled = onDelete != null,
-                )
-            }
+                },
+                onDelete = onDelete,
+            )
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -725,6 +712,35 @@ private fun TaclDetailPaneTopBar(
         ),
         modifier = modifier,
     )
+}
+
+@Composable
+private fun TaclDetailPaneTopBarDropdownMenu(
+    expanded: Boolean,
+    onDismiss: () -> Unit,
+    onDelete: (() -> Unit)?
+) {
+    DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = onDismiss
+    ) {
+        DropdownMenuItem(
+            text = {
+                Text(stringResource(R.string.misc_action_delete))
+            },
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(R.drawable.ic_m3_delete),
+                    contentDescription = stringResource(R.string.misc_action_delete),
+                )
+            },
+            onClick = {
+                onDismiss()
+                onDelete?.invoke()
+            },
+            enabled = onDelete != null,
+        )
+    }
 }
 
 @Composable
@@ -788,7 +804,6 @@ fun buildPreviewTaclViewModel(): TaclViewModel {
 fun PreviewTaclScreen() {
     TaclPreview {
         TaclScreen(
-            viewModel = buildPreviewTaclViewModel(),
             navigation = buildPreviewScreenNavigation(),
         )
     }

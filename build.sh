@@ -15,14 +15,17 @@ done
 SCRIPT_PATH="$(readlink -f "${SCRIPT_PATH}")"
 SCRIPT_NAME="$(basename "$SCRIPT_PATH")"
 SCRIPT_DIR="$(cd -P "$(dirname -- "${SCRIPT_PATH}")" >/dev/null 2>&1 && pwd)"
+readonly SCRIPT SCRIPT_PATH SCRIPT_NAME SCRIPT_DIR
 
 OCI="podman"
 if ! command -v podman >/dev/null 2>&1
 then
 	OCI="docker"
 fi
+readonly OCI
 
 BUILD_CONTAINER_IMAGE="registry.gitlab.com/fdroid/fdroidserver:buildserver"
+readonly BUILD_CONTAINER_IMAGE
 
 
 #########

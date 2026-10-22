@@ -29,11 +29,12 @@ import alt.foss.brunothg.tacl.bl.permission.AppPermissions
 import alt.foss.brunothg.tacl.bl.repository.AppSettingsRepository
 import alt.foss.brunothg.tacl.misc.LoadState
 import alt.foss.brunothg.tacl.misc.LoadState.Loading.valueOrNull
-import alt.foss.brunothg.tacl.ui.components.PermissionIndicator
-import alt.foss.brunothg.tacl.ui.components.SimpleDialog
-import alt.foss.brunothg.tacl.ui.components.SimpleDialogButtons
+import alt.foss.brunothg.tacl.ui.components.permission.PermissionIndicator
+import alt.foss.brunothg.tacl.ui.components.misc.SimpleDialog
+import alt.foss.brunothg.tacl.ui.components.misc.SimpleDialogButtons
 import alt.foss.brunothg.tacl.ui.components.settings.CallRegionEditor
 import alt.foss.brunothg.tacl.ui.components.settings.CallRegionEditorUiState
+import alt.foss.brunothg.tacl.ui.misc.PreviewUtils.withPreviewFallback
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 import androidx.compose.runtime.Immutable
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -123,9 +124,9 @@ class HiltCallRegionSettingsViewModel @Inject constructor(
     }
 
     override fun onDialogVisibilityChange(visible: Boolean) {
-        val currentVisiblility = _isDialogVisible.value
+        val currentVisibility = _isDialogVisible.value
 
-        if (currentVisiblility == visible) {
+        if (currentVisibility == visible) {
             return // Already in the desired state
         }
 
@@ -151,7 +152,10 @@ class HiltCallRegionSettingsViewModel @Inject constructor(
 @Composable
 fun CallRegionSettingsItem(
     modifier: Modifier = Modifier,
-    viewModel: CallRegionSettingsViewModel = hiltViewModel<HiltCallRegionSettingsViewModel>(),
+    viewModel: CallRegionSettingsViewModel = withPreviewFallback(
+        { hiltViewModel<HiltCallRegionSettingsViewModel>() },
+        { buildPreviewCallRegionSettingsViewModel() }
+    ),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val readPhoneStatePermission = AppPermissions.ReadPhoneStatePermission.definition
@@ -169,7 +173,7 @@ fun CallRegionSettingsItem(
                 when (callRegionState) {
                     is LoadState.Loading -> {
                         Text(
-                            text = stringResource(R.string.misc_value_loading)
+                            text = stringResource(R.string.misc_state_loading)
                         )
                     }
 
@@ -289,8 +293,6 @@ fun buildPreviewCallRegionSettingsViewModel(): CallRegionSettingsViewModel {
 @Composable
 fun PreviewCallRegionSettingsItem() {
     TaclPreview {
-        CallRegionSettingsItem(
-            viewModel = buildPreviewCallRegionSettingsViewModel(),
-        )
+        CallRegionSettingsItem()
     }
 }

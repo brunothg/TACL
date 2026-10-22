@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import alt.foss.brunothg.tacl.R
-import alt.foss.brunothg.tacl.ui.components.BackButton
+import alt.foss.brunothg.tacl.ui.components.misc.BackButton
 import alt.foss.brunothg.tacl.ui.screens.main.Route
 import alt.foss.brunothg.tacl.ui.screens.main.ScreenNavigation
 import alt.foss.brunothg.tacl.ui.screens.main.buildPreviewScreenNavigation
@@ -62,6 +62,10 @@ fun SettingsScreen(
 
             item {
                 CallRegionSettingsItem()
+            }
+
+            item {
+                LogMaxSizeSettingsItem()
             }
 
             item {

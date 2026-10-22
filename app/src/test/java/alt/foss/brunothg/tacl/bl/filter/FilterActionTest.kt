@@ -39,10 +39,10 @@ class FilterActionTest {
         val result = action1 + action2
 
         // Then
-        assertEquals(BlockType.IGNORE, result.block, "Should favor action1's block type")
-        assertEquals(true, result.ring, "Should favor action1's ring setting")
-        assertEquals(true, result.notification, "Should take action2's notification since action1's is null")
-        assertEquals(true, result.callLog, "Should favor action1's call log setting")
+        assertEquals(BlockType.IGNORE, result.block, "Should favor first action's block type")
+        assertEquals(true, result.ring, "Should favor first action's ring setting")
+        assertEquals(true, result.notification, "Should take second action's notification since first action's is null")
+        assertEquals(true, result.callLog, "Should favor first action's call log setting")
     }
 
     @Test
@@ -55,22 +55,22 @@ class FilterActionTest {
         val result = action1 + action2
 
         // Then
-        assertNull(result.block)
+        assertNull(result.block, "Should result in null if both properties are null")
     }
 
     @Test
-    fun `plus operator with empty actions should return empty action`() {
+    fun `plus operator with NOTHING actions should return NOTHING action`() {
         // Given
-        val action1 = FilterAction()
-        val action2 = FilterAction()
+        val action1 = FilterAction.NOTHING
+        val action2 = FilterAction.NOTHING
 
         // When
         val result = action1 + action2
 
         // Then
-        assertNull(result.block)
-        assertNull(result.ring)
-        assertNull(result.notification)
-        assertNull(result.callLog)
+        assertNull(result.block, "Should result in empty action")
+        assertNull(result.ring, "Should result in empty action")
+        assertNull(result.notification, "Should result in empty action")
+        assertNull(result.callLog, "Should result in empty action")
     }
 }

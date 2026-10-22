@@ -13,28 +13,27 @@ package alt.foss.brunothg.tacl.bl.filter
 /**
  * Filter action defining the way a call should be handled.
  * Optional properties will result in system defaults if not set or set to null.
+ *
+ * @property block If present in which way should the call be blocked
+ * @property ring Should the phone ring
+ * @property notification Should there be a notification for the call
+ * @property callLog Should the call be present in the call log
  */
 data class FilterAction(
-    /**
-     * If present in which way should the call be blocked
-     */
     val block: BlockType? = null,
-
-    /**
-     * Should the phone ring
-     */
     val ring: Boolean? = null,
-
-    /**
-     * Should there be a notification for the call
-     */
     val notification: Boolean? = null,
-
-    /**
-     * Should the call be present in the call log
-     */
     val callLog: Boolean? = null,
 ) {
+
+    companion object {
+
+        /**
+         * Explicit filter action for doing nothing.
+         * Not necessary the same as default constructor`FilterAction()`.
+         */
+        val NOTHING = FilterAction()
+    }
 
     /**
      * Create the merged action of this and the other action.

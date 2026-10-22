@@ -8,14 +8,22 @@
  *
  */
 
-package alt.foss.brunothg.tacl.ui.components
+package alt.foss.brunothg.tacl.ui.components.permission
 
+import alt.foss.brunothg.tacl.bl.permission.AppPermissions
+import alt.foss.brunothg.tacl.bl.permission.PermissionDefinition
+import alt.foss.brunothg.tacl.bl.permission.PermissionManager
+import alt.foss.brunothg.tacl.bl.permission.PermissionState
+import alt.foss.brunothg.tacl.bl.permission.PermissionType
+import alt.foss.brunothg.tacl.ui.misc.PreviewUtils.withPreviewFallback
+import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 import android.app.Activity.RESULT_OK
 import android.app.role.RoleManager
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
@@ -23,15 +31,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import alt.foss.brunothg.tacl.bl.permission.PermissionDefinition
-import alt.foss.brunothg.tacl.bl.permission.PermissionManager
-import alt.foss.brunothg.tacl.bl.permission.PermissionState
-import alt.foss.brunothg.tacl.bl.permission.PermissionType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -54,28 +60,7 @@ interface PermissionsViewModel {
      * @param definitions The definitions to filter for.
      * @return A flow of the permission states.
      */
-    fun permissions(definitions: Collection<PermissionDefinition>): Flow<Set<PermissionState>>
-
-    /**
-     * Get a flow of state for a specific definition.
-     *
-     * @param definition The definition to filter for.
-     * @return A flow of the permission state.
-     */
-    fun permission(definition: PermissionDefinition): Flow<PermissionState>
-}
-
-/**
- * Hilt ViewModel for permissions.
- */
-@HiltViewModel
-class HiltPermissionsViewModel @Inject constructor(
-    permissionManager: PermissionManager
-) : ViewModel(), PermissionsViewModel {
-
-    override val permissions = permissionManager.state
-
-    override fun permissions(
+    fun permissions(
         definitions: Collection<PermissionDefinition>
     ): Flow<Set<PermissionState>> {
         return permissions
@@ -89,7 +74,13 @@ class HiltPermissionsViewModel @Inject constructor(
             .distinctUntilChanged()
     }
 
-    override fun permission(
+    /**
+     * Get a flow of state for a specific definition.
+     *
+     * @param definition The definition to filter for.
+     * @return A flow of the permission state.
+     */
+    fun permission(
         definition: PermissionDefinition
     ): Flow<PermissionState> {
         return permissions
@@ -101,6 +92,17 @@ class HiltPermissionsViewModel @Inject constructor(
             }
             .distinctUntilChanged()
     }
+}
+
+/**
+ * Hilt ViewModel for permissions.
+ */
+@HiltViewModel
+class HiltPermissionsViewModel @Inject constructor(
+    permissionManager: PermissionManager
+) : ViewModel(), PermissionsViewModel {
+
+    override val permissions = permissionManager.state
 
 }
 
@@ -115,12 +117,16 @@ fun PermissionIndicator(
     permissionDefinitions: Collection<PermissionDefinition>,
     content: @Composable (granted: Boolean?) -> Unit,
 ) {
+
     val isPreview = LocalInspectionMode.current
     if (isPreview) {
         return content(false)
     }
 
-    val permissionsViewModel: HiltPermissionsViewModel = hiltViewModel()
+    val permissionsViewModel: PermissionsViewModel = withPreviewFallback(
+        { hiltViewModel<HiltPermissionsViewModel>() },
+        { buildPreviewPermissionsViewModel() }
+    )
     val hasRoles by remember {
         permissionsViewModel.permissions(permissionDefinitions)
             .map { states ->
@@ -193,7 +199,7 @@ fun rememberRoleRequestLauncher(
 
         resultHandler?.invoke(elapsedTime > launchDeltaSuccessTime, result)
     }
-    val settingsAction: (() -> Unit)? = if(permissionDefinition.settingsIntentBuilder != null) ({
+    val settingsAction: (() -> Unit)? = if (permissionDefinition.settingsIntentBuilder != null) ({
         val action = permissionDefinition.settingsIntentBuilder()
         Log.d("PermissionsUi", "Request call screening role through fallback action: $action")
 
@@ -209,10 +215,10 @@ fun rememberRoleRequestLauncher(
 
         val returnValue: Boolean?
         if (elapsedTime < launchDeltaSuccessTime) {
-            if(settingsAction != null){
+            if (settingsAction != null) {
                 settingsAction()
                 returnValue = null
-            } else{
+            } else {
                 returnValue = false
             }
         } else {
@@ -238,8 +244,29 @@ fun rememberRoleRequestLauncher(
             && !roleManager.isRoleHeld(permissionDefinition.name)
         ) {
             roleManagerAction()
-        } else if(settingsAction != null) {
+        } else if (settingsAction != null) {
             settingsAction()
+        }
+    }
+}
+
+@Composable
+fun buildPreviewPermissionsViewModel(): PermissionsViewModel {
+    return object : PermissionsViewModel {
+        override val permissions: StateFlow<Set<PermissionState>> = MutableStateFlow(
+            emptySet()
+        )
+    }
+}
+
+@PreviewLightDark
+@Composable
+fun PreviewSetupScaffold() {
+    TaclPreview {
+        PermissionIndicator(
+            permissionDefinitions = setOf(AppPermissions.ReadPhoneStatePermission.definition)
+        ) { granted ->
+            Text("Granted: $granted")
         }
     }
 }

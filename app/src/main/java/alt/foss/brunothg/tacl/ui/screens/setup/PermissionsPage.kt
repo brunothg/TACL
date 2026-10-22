@@ -36,8 +36,8 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import alt.foss.brunothg.tacl.R
 import alt.foss.brunothg.tacl.bl.permission.AppPermissions
-import alt.foss.brunothg.tacl.ui.components.PermissionIndicator
-import alt.foss.brunothg.tacl.ui.components.rememberPermissionRequestLauncher
+import alt.foss.brunothg.tacl.ui.components.permission.PermissionIndicator
+import alt.foss.brunothg.tacl.ui.components.permission.rememberPermissionRequestLauncher
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 
 /**

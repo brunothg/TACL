@@ -25,4 +25,9 @@ enum class BlockType(
      * Ignore and hangup
      */
     HANGUP(id = "hangup"),
+
+    /**
+     * Do not block in any way
+     */
+    NONE(id = "none"),
 }

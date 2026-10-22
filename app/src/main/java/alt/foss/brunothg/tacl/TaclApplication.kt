@@ -12,8 +12,10 @@ package alt.foss.brunothg.tacl
 
 import android.app.Application
 import android.content.Context
-import alt.foss.brunothg.tacl.service.TaclService
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 
 /**
  * The application class.
@@ -27,13 +29,13 @@ class TaclApplication : Application() {
     }
 
     companion object {
-        val callScreeningService = TaclService::class
-
         lateinit var instance: TaclApplication
             private set
 
         val context: Context
             get() = instance.applicationContext
+
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     }
 
 }

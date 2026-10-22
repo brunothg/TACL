@@ -41,8 +41,8 @@ For more details on what each action does, see [Call Filter Actions](docs/Filter
 
 ## Screenshots
 
-| <img alt="Main screen" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_main_screen.png" width="512"> | <img alt="Editor screen" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_editor_screen.png" width="512"> |
-|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| <img alt="Main screen" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_main_screen.png" width="512"> | <img alt="Editor screen" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_editor_screen.png" width="512"> | <img alt="Editor screen" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_log_screen.png" width="512"> |
+|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 
 ## License
 

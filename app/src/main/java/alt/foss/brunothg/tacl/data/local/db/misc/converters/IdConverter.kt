@@ -21,11 +21,11 @@ object IdConverter {
      * Convert [ID] to database value.
      */
     @TypeConverter
-    fun toDb(id: ID): String = id.value
+    fun toDb(id: ID?): String? = id?.value
 
     /**
      * Convert database value to [ID].
      */
     @TypeConverter
-    fun fromDb(value: String): ID = ID(value)
+    fun fromDb(value: String?): ID? = value?.let { ID(it) }
 }

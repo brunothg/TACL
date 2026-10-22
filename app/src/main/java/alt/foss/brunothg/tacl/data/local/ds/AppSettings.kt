@@ -26,4 +26,9 @@ object AppSettings {
      * The key for the call region.
      */
     val CallRegion = stringPreferencesKey("call_region")
+
+    /**
+     * The key for the filter max log size (max log entries).
+     */
+    val LogMaxSize = intPreferencesKey("log_max_size")
 }

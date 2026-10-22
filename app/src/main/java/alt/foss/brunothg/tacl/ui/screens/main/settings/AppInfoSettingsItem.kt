@@ -13,7 +13,7 @@ package alt.foss.brunothg.tacl.ui.screens.main.settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import alt.foss.brunothg.tacl.ui.components.AppInfoSection
+import alt.foss.brunothg.tacl.ui.components.misc.AppInfoSection
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 
 @Composable

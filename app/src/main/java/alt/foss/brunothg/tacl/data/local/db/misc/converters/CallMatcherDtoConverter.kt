@@ -27,13 +27,16 @@ object CallMatcherDtoConverter {
      * Convert [CallMatcherDto] to database value.
      */
     @TypeConverter
-    fun toDb(dto: CallMatcherDto): String = json.encodeToString(CallMatcherDto.serializer(), dto)
+    fun toDb(dto: CallMatcherDto?): String? = dto?.let {
+        json.encodeToString(CallMatcherDto.serializer(), it)
+    }
 
     /**
      * Convert database value to [CallMatcherDto].
      */
     @TypeConverter
-    fun fromDb(value: String): CallMatcherDto =
-        json.decodeFromString(CallMatcherDto.serializer(), value)
+    fun fromDb(value: String?): CallMatcherDto? = value?.let {
+        json.decodeFromString(CallMatcherDto.serializer(), it)
+    }
 
 }

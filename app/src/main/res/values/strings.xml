@@ -23,6 +23,7 @@
     <string name="misc_action_new">New</string>
     <string name="misc_action_save">Save</string>
     <string name="misc_action_delete">Delete</string>
+    <string name="misc_action_delete_sweep">Delete all</string>
     <string name="misc_action_default">Default</string>
     <string name="misc_action_open_menu">Open menu</string>
     <string name="misc_action_cancel">Cancel</string>
@@ -36,14 +37,15 @@
     <string name="misc_state_disabled">Disabled</string>
     <string name="misc_state_enabled">Enabled</string>
     <string name="misc_state_default">Default</string>
+    <string name="misc_state_loading">Loading…</string>
 
     <string name="misc_value_unknown">Unknown value</string>
-    <string name="misc_value_loading">Loading…</string>
     <string name="misc_value_default">Default</string>
 
     <string name="filter_action_system_default_description">System default</string>
     <string name="filter_action_block_ignore_description">Ignore calls</string>
     <string name="filter_action_block_hangup_description">Hangup calls</string>
+    <string name="filter_action_block_none_description">Do not block calls</string>
     <string name="filter_action_ring_on_description">Do ring</string>
     <string name="filter_action_ring_off_description">Do not ring</string>
     <string name="filter_action_notification_on_description">Show notification</string>
@@ -62,6 +64,7 @@
     <string name="filter_editor_action_block_label">Block</string>
     <string name="filter_editor_action_block_ignore_label">Ignore</string>
     <string name="filter_editor_action_block_hangup_label">Hangup</string>
+    <string name="filter_editor_action_block_none_label">Do not block</string>
     <string name="filter_editor_action_ring_label">Ring</string>
     <string name="filter_editor_action_notification_label">Notification</string>
     <string name="filter_editor_action_call_log_label">Call log</string>
@@ -167,6 +170,9 @@
     <string name="screen_tacl_no_selection_message">Please select a call filter</string>
     <string name="screen_tacl_no_data_message">Please add your first call filter</string>
 
+    <string name="screen_log_label">Log</string>
+    <string name="screen_log_no_data_message">No log entries available</string>
+
     <string name="screen_settings_label">Settings</string>
     <string name="screen_settings_call_screening_role_label">Call screening</string>
     <string name="screen_settings_call_screening_role_description">Enable/disable call screening service</string>
@@ -174,6 +180,8 @@
     <string name="screen_settings_call_region_description">Set the call region to auto-detect or a custom value</string>
     <string name="screen_settings_call_region_auto_detect_label">Auto</string>
     <string name="screen_settings_call_region_auto_detect_permissionless_label">Auto!</string>
+    <string name="screen_settings_log_max_size_label">Log entries limit</string>
+    <string name="screen_settings_log_max_size_description">Set the maximum number of log entries to keep</string>
     <string name="screen_settings_libraries_label">Libraries</string>
     <string name="screen_settings_libraries_description">Open source components used in this app</string>
     <string name="screen_settings_app_info_label">App information</string>

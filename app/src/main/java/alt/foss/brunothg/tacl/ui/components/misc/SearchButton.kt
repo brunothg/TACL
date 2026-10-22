@@ -8,11 +8,12 @@
  *
  */
 
-package alt.foss.brunothg.tacl.ui.components
+package alt.foss.brunothg.tacl.ui.components.misc
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -20,30 +21,33 @@ import alt.foss.brunothg.tacl.R
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 
 /**
- * A button for navigating back.
+ * A search button.
  *
- * @param onBack Callback when the button is clicked.
+ * @param onSearch Callback when the button is clicked.
+ * @param modifier The modifier to be applied to the button.
  */
 @Composable
-fun BackButton(
-    onBack: () -> Unit
+fun SearchButton(
+    onSearch: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     IconButton(
-        onClick = onBack
+        onClick = onSearch,
+        modifier = modifier,
     ) {
         Icon(
-            painter = painterResource(R.drawable.ic_m3_arrow_back),
-            contentDescription = stringResource(R.string.misc_action_back),
+            painter = painterResource(R.drawable.ic_m3_search),
+            contentDescription = stringResource(R.string.misc_action_search),
         )
     }
 }
 
 @PreviewLightDark
 @Composable
-fun PreviewBackButton() {
+fun PreviewSearchButton() {
     TaclPreview {
-        BackButton(
-            onBack = {}
+        SearchButton(
+            onSearch = {}
         )
     }
 }

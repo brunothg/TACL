@@ -90,7 +90,6 @@ enum class NavItem(
         labelRes = R.string.nav_log_label,
         descriptionRes = R.string.nav_log_description,
         iconRes = R.drawable.ic_m3_call_log,
-        enabled = BuildConfig.DEBUG, // TODO rm if implemented
     ),
 
     Settings(
@@ -98,7 +97,6 @@ enum class NavItem(
         labelRes = R.string.nav_settings_label,
         descriptionRes = R.string.nav_settings_description,
         iconRes = R.drawable.ic_m3_settings,
-        enabled = BuildConfig.DEBUG, // TODO rm if implemented
     );
 
     companion object {

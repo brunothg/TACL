@@ -14,12 +14,13 @@ import alt.foss.brunothg.tacl.R
 import alt.foss.brunothg.tacl.bl.repository.AppSettingsRepository
 import alt.foss.brunothg.tacl.misc.LoadState
 import alt.foss.brunothg.tacl.misc.LoadState.Loading.valueOrNull
-import alt.foss.brunothg.tacl.ui.components.LoadingIndicator
+import alt.foss.brunothg.tacl.ui.components.misc.LoadingIndicator
 import alt.foss.brunothg.tacl.ui.misc.Delayed
 import alt.foss.brunothg.tacl.ui.misc.PagerUtils.animateScrollToNextPage
 import alt.foss.brunothg.tacl.ui.misc.PagerUtils.animateScrollToPreviousPage
 import alt.foss.brunothg.tacl.ui.misc.PagerUtils.isFirstPage
 import alt.foss.brunothg.tacl.ui.misc.PagerUtils.isLastPage
+import alt.foss.brunothg.tacl.ui.misc.PreviewUtils.withPreviewFallback
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 import android.util.Log
 import androidx.compose.foundation.background
@@ -46,7 +47,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -155,7 +155,10 @@ class HiltSetupViewModel @Inject constructor(
  */
 @Composable
 fun SetupScaffold(
-    viewModel: SetupViewModel = hiltViewModel<HiltSetupViewModel>(),
+    viewModel: SetupViewModel = withPreviewFallback(
+        { hiltViewModel<HiltSetupViewModel>() },
+        { buildPreviewSetupViewModel() }
+    ),
     onDone: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -390,9 +393,7 @@ fun buildPreviewSetupViewModel(): SetupViewModel {
 @Composable
 fun PreviewSetupScaffold() {
     TaclPreview {
-        SetupScaffold(
-            viewModel = buildPreviewSetupViewModel()
-        )
+        SetupScaffold()
     }
 }
 

@@ -10,13 +10,14 @@
 
 package alt.foss.brunothg.tacl.data.local.ds
 
+import alt.foss.brunothg.tacl.bl.repository.AppSettingsRepository
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
-import alt.foss.brunothg.tacl.bl.repository.AppSettingsRepository
 import kotlinx.coroutines.flow.map
 import java.util.Locale
 import javax.inject.Inject
+import kotlin.math.max
 
 /**
  * Implementation of [AppSettingsRepository] using DataStore.
@@ -26,6 +27,10 @@ import javax.inject.Inject
 class AppSettingsRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) : AppSettingsRepository {
+
+    companion object {
+        const val DEFAULT_LOG_MAX_SIZE = 500
+    }
 
     override val setupVersion = dataStore.data.map {
         it[AppSettings.SetupVersion] ?: 0
@@ -54,6 +59,17 @@ class AppSettingsRepositoryImpl @Inject constructor(
 
                 it[key] = region
             }
+        }
+    }
+
+    override val logMaxSize = dataStore.data.map {
+        it[AppSettings.LogMaxSize] ?: DEFAULT_LOG_MAX_SIZE
+    }
+
+    override suspend fun setLogMaxSize(size: Int) {
+        dataStore.edit {
+            val key = AppSettings.LogMaxSize
+            it[key] = max(0, size)
         }
     }
 

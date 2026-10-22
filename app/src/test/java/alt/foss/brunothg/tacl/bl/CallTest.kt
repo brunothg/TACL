@@ -32,8 +32,8 @@ class CallTest {
         val phoneNumber = call.phoneNumber
 
         // Then
-        assertEquals("+49123456789", phoneNumber)
-        assertEquals("+49123456789", call.normalizedPhoneNumber)
+        assertEquals("+49123456789", phoneNumber, "Number should be normalized")
+        assertEquals("+49123456789", call.normalizedPhoneNumber, "Normalized number should be available")
     }
 
     @Test
@@ -48,8 +48,8 @@ class CallTest {
         val phoneNumber = call.phoneNumber
 
         // Then
-        assertEquals("invalid-number", phoneNumber)
-        assertNull(call.normalizedPhoneNumber)
+        assertEquals("invalid-number", phoneNumber, "Number should be raw")
+        assertNull(call.normalizedPhoneNumber, "Normalized number should not be available")
     }
 
     @Test
@@ -62,7 +62,7 @@ class CallTest {
         val raw = call.rawPhoneNumber
 
         // Then
-        assertEquals("+49123456789", raw)
+        assertEquals("+49123456789", raw, "Raw number should be extracted")
     }
 
     @Test
@@ -77,6 +77,6 @@ class CallTest {
         val phoneNumber = call.phoneNumber
 
         // Then
-        assertEquals("+49123456789", phoneNumber)
+        assertEquals("+49123456789", phoneNumber, "Number should be normalized")
     }
 }

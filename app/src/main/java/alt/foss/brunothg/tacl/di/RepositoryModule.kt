@@ -14,6 +14,8 @@ import alt.foss.brunothg.tacl.data.local.db.filter.CallFilterRepositoryImpl
 import alt.foss.brunothg.tacl.data.local.ds.AppSettingsRepositoryImpl
 import alt.foss.brunothg.tacl.bl.repository.AppSettingsRepository
 import alt.foss.brunothg.tacl.bl.repository.CallFilterRepository
+import alt.foss.brunothg.tacl.bl.repository.FilterLogRepository
+import alt.foss.brunothg.tacl.data.local.db.log.FilterLogRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -41,5 +43,13 @@ abstract class RepositoryModule {
     abstract fun bindCallFilterRepository(
         impl: CallFilterRepositoryImpl
     ): CallFilterRepository
+
+    /**
+     * Bind the filter log repository.
+     */
+    @Binds
+    abstract fun bindFilterLogRepository(
+        impl: FilterLogRepositoryImpl
+    ): FilterLogRepository
 
 }

@@ -42,15 +42,8 @@ interface CallFilterDao : CrudDao<CallFilterEntity> {
 
     /**
      * Delete all call filters.
-     * @param callFilters The filters to delete.
-     */
-    @Delete
-    fun deleteAll(callFilters: List<CallFilterEntity>)
-
-    /**
-     * Delete all call filters.
      */
     @Query("DELETE FROM call_filters")
-    fun deleteAll()
+    suspend fun deleteAll()
 
 }

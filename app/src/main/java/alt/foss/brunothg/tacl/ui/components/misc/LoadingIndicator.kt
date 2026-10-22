@@ -8,7 +8,7 @@
  *
  */
 
-package alt.foss.brunothg.tacl.ui.components
+package alt.foss.brunothg.tacl.ui.components.misc
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio

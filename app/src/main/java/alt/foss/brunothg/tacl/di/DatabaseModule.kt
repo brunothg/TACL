@@ -48,4 +48,10 @@ object DatabaseModule {
     @Provides
     fun provideCallFilterDao(db: AppDatabase) = db.callFilterDao()
 
+    /**
+     * Provide the filter log DAO.
+     */
+    @Provides
+    fun provideFilterLogDao(db: AppDatabase) = db.filterLogDao()
+
 }

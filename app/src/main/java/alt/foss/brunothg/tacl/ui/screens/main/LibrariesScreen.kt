@@ -13,10 +13,11 @@ package alt.foss.brunothg.tacl.ui.screens.main
 import alt.foss.brunothg.tacl.R
 import alt.foss.brunothg.tacl.misc.ID
 import alt.foss.brunothg.tacl.misc.LoadState
-import alt.foss.brunothg.tacl.ui.components.BackButton
-import alt.foss.brunothg.tacl.ui.components.FilterBar
-import alt.foss.brunothg.tacl.ui.components.LoadingIndicator
+import alt.foss.brunothg.tacl.ui.components.misc.BackButton
+import alt.foss.brunothg.tacl.ui.components.misc.FilterBar
+import alt.foss.brunothg.tacl.ui.components.misc.LoadingIndicator
 import alt.foss.brunothg.tacl.ui.misc.Delayed
+import alt.foss.brunothg.tacl.ui.misc.PreviewUtils.withPreviewFallback
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -170,8 +171,11 @@ fun rememberLibrariesViewModel(): LibrariesViewModel {
  */
 @Composable
 fun LibrariesScreen(
-    viewModel: LibrariesViewModel = rememberLibrariesViewModel(),
     navigation: ScreenNavigation,
+    viewModel: LibrariesViewModel = withPreviewFallback(
+        { rememberLibrariesViewModel() },
+        { buildPreviewLibrariesViewModel() }
+    ),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -298,7 +302,6 @@ fun buildPreviewLibrariesViewModel(): LibrariesViewModel {
 fun PreviewLibrariesScreen() {
     TaclPreview {
         LibrariesScreen(
-            viewModel = buildPreviewLibrariesViewModel(),
             navigation = buildPreviewScreenNavigation(),
         )
     }

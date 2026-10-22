@@ -10,6 +10,9 @@
 
 package alt.foss.brunothg.tacl.ui.screens.main
 
+import alt.foss.brunothg.tacl.ui.misc.UiTodo
+import alt.foss.brunothg.tacl.ui.screens.main.settings.SettingsScreen
+import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 import android.util.Log
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -29,9 +32,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import alt.foss.brunothg.tacl.ui.misc.UiTodo
-import alt.foss.brunothg.tacl.ui.screens.main.settings.SettingsScreen
-import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 
 
 /**
@@ -119,8 +119,10 @@ private fun TaclNavHost(
             UiTodo("Debug route")
         }
 
-        composable<Route.Log> {
-            UiTodo("Log route")
+        composable<Route.Log> { navBackEntry ->
+            LogScreen(
+                navigation = rememberScreenNavigation(navController, navBackEntry)
+            )
         }
 
         navigation<Route.Settings>(

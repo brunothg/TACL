@@ -45,4 +45,18 @@ interface AppSettingsRepository {
     suspend fun setCallRegion(
         region: String?
     )
+
+    /**
+     * The maximum size of the filter log.
+     */
+    val logMaxSize: Flow<Int>
+
+    /**
+     * Set the maximum size of the filter log.
+     *
+     * @param size The new size limit.
+     */
+    suspend fun setLogMaxSize(
+        size: Int
+    )
 }

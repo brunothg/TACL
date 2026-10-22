@@ -31,7 +31,7 @@ class RegexCallMatcherTest {
         val result = matcher.appliesTo(call)
 
         // Then
-        assertTrue(result)
+        assertTrue(result, "Regex should match")
     }
 
     @Test
@@ -44,7 +44,7 @@ class RegexCallMatcherTest {
         val result = matcher.appliesTo(call)
 
         // Then
-        assertFalse(result)
+        assertFalse(result, "Regex should not match")
     }
 
     @Test
@@ -61,6 +61,6 @@ class RegexCallMatcherTest {
         val result = matcher.appliesTo(call)
 
         // Then
-        assertTrue(result)
+        assertTrue(result, "Regex should match")
     }
 }

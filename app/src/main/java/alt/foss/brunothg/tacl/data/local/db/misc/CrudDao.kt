@@ -83,4 +83,13 @@ interface CrudDao<T> {
     @Delete
     suspend fun delete(entity: T)
 
+    /**
+     * Delete all entities.
+     *
+     * @param entities The entities to update.
+     * @return The number of rows updated.
+     */
+    @Delete
+    suspend fun deleteAll(entities: List<T>): Int
+
 }

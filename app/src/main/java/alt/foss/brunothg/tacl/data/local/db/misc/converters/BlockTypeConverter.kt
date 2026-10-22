@@ -21,12 +21,15 @@ object BlockTypeConverter {
      * Convert [BlockType] to database value.
      */
     @TypeConverter
-    fun toDb(enum: BlockType): String = enum.id
+    fun toDb(enum: BlockType?): String? = enum?.id
 
     /**
      * Convert database value to [BlockType].
      */
     @TypeConverter
-    fun fromDb(value: String): BlockType = BlockType.entries.firstOrNull { it.id == value }
-        ?: error("Database mismatch: Unknown id '$value' for ${BlockType::class.simpleName}")
+    fun fromDb(value: String?): BlockType? = value?.let { blockTypeId ->
+        BlockType.entries.firstOrNull { it.id == blockTypeId }
+            ?: error("Database mismatch: Unknown id '$blockTypeId' for ${BlockType::class.simpleName}")
+    }
+
 }

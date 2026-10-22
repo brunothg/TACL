@@ -36,7 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import alt.foss.brunothg.tacl.R
-import alt.foss.brunothg.tacl.ui.components.FilterBar
+import alt.foss.brunothg.tacl.ui.components.misc.FilterBar
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 import java.util.Locale
 import kotlin.math.max

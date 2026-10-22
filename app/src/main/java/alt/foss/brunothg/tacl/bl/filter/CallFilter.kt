@@ -16,43 +16,23 @@ import alt.foss.brunothg.tacl.misc.ID
 
 /**
  * A call filter defining if a call is filtered and if so how to handle it.
+ *
+ * @property orderIndex The order in which this filter will be applied.
+ * @property name Short user given name
+ * @property description Optional detail description
+ * @property enabled Is the filter enabled/disabled
+ * @property invertMatch If true the matchers result will be inverted
+ * @property matcher The call matcher deciding if this filter will be applied to a specific call
+ * @property action The action taking place if the filter will be applied to a specific call
  */
 data class CallFilter(
     val id: ID = ID.uuid(),
-
-    /**
-     * The order in which this filter will be applied.
-     */
-    val orderIndex: Int, // TODO ensure order index >= 0
-
-    /**
-     * Short user given name
-     */
-    val name: String, // TODO ensure name not empty, trimmed
-
-    /**
-     * Optional detail description
-     */
-    val description: String? = null, // TODO ensure trimmed
-
-    /**
-     * Is the filter enabled/disabled
-     */
+    val orderIndex: Int,
+    val name: String,
+    val description: String? = null,
     val enabled: Boolean = true,
-
-    /**
-     * If true the matchers result will be inverted
-     */
     val invertMatch: Boolean = false,
-
-    /**
-     * The call matcher deciding if this filter will be applied to a specific call
-     */
     val matcher: CallMatcher,
-
-    /**
-     * The action taking place if the filter will be applied to a specific call
-     */
     val action: FilterAction,
 ) {
 
@@ -62,9 +42,11 @@ data class CallFilter(
          * Apply this filter chain to a specific call.
          *
          * @param call The call to filter.
-         * @return The resulting action.
+         * @return The resulting action with intermediates.
          */
-        fun Collection<CallFilter>.filterCall(call: Call): FilterAction? {
+        fun Collection<CallFilter>.filterCallWithIntermediate(
+            call: Call,
+        ): Pair<List<Pair<CallFilter, FilterAction>>, FilterAction> {
             return this
                 .filter { it.enabled }
                 .filter {
@@ -72,14 +54,38 @@ data class CallFilter(
                     if (it.invertMatch) !match else match
                 }
                 .map { it to it.action }
-                .reduceOrNull { acc, current ->
-                    // val accFilter = acc.first
-                    val accAction = acc.second
-                    val currentFilter = current.first
-                    val currentAction = current.second
+                .runningReduce { acc, current ->
+                    current.first to acc.second + current.second
+                }
+                .let { intermediates ->
+                    intermediates to (
+                            intermediates
+                                .map { it.second }
+                                .lastOrNull() ?: FilterAction.NOTHING
+                            )
+                }
+        }
 
-                    currentFilter to (accAction + currentAction)
-                }?.second
+        /**
+         * Apply this filter chain to a specific call.
+         *
+         * @param call The call to filter.
+         * @return The resulting action.
+         */
+        fun Collection<CallFilter>.filterCall(
+            call: Call,
+        ): FilterAction {
+            return this
+                .filter { it.enabled }
+                .filter {
+                    val match = it.matcher.appliesTo(call)
+                    if (it.invertMatch) !match else match
+                }
+                .fold(
+                    FilterAction.NOTHING
+                ) { acc, current ->
+                    acc + current.action
+                }
         }
 
     }

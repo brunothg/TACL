@@ -12,6 +12,7 @@ package alt.foss.brunothg.tacl.di
 
 import alt.foss.brunothg.tacl.bl.repository.AppSettingsRepository
 import alt.foss.brunothg.tacl.bl.repository.CallFilterRepository
+import alt.foss.brunothg.tacl.bl.repository.FilterLogRepository
 import alt.foss.brunothg.tacl.service.TaclService
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
@@ -28,6 +29,11 @@ interface TaclServiceEntryPoint {
      * Get the call filter repository.
      */
     fun callFilterRepository(): CallFilterRepository
+
+    /**
+     * Get the filter log repository.
+     */
+    fun filterLogRepository(): FilterLogRepository
 
     /**
      * Get the app settings repository.

@@ -8,7 +8,7 @@
  *
  */
 
-package alt.foss.brunothg.tacl.ui.components
+package alt.foss.brunothg.tacl.ui.components.misc
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +26,7 @@ import androidx.core.net.toUri
 import alt.foss.brunothg.tacl.BuildConfig
 import alt.foss.brunothg.tacl.R
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
+import androidx.compose.foundation.layout.PaddingValues
 
 /**
  * A section displaying application information.
@@ -33,6 +34,7 @@ import alt.foss.brunothg.tacl.ui.theme.TaclPreview
 @Composable
 fun AppInfoSection(
     modifier: Modifier = Modifier,
+    padding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
 ) {
     val appName = stringResource(R.string.app_name)
     val versionName = BuildConfig.VERSION_NAME
@@ -41,7 +43,7 @@ fun AppInfoSection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .padding(padding)
     ) {
         Text(
             stringResource(R.string.screen_settings_app_info_label),

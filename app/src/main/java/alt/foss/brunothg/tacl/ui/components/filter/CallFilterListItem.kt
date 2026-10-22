@@ -33,30 +33,23 @@ import alt.foss.brunothg.tacl.bl.filter.CallFilter
 import alt.foss.brunothg.tacl.bl.filter.FilterAction
 import alt.foss.brunothg.tacl.bl.filter.matchers.RegexCallMatcher
 import alt.foss.brunothg.tacl.ui.theme.TaclPreview
-
-@Composable
-private fun statusColor(status: Any?): Color {
-    return when (status) {
-        null -> MaterialTheme.colorScheme.outline
-        else -> MaterialTheme.colorScheme.primary
-    }
-}
+import androidx.compose.foundation.layout.PaddingValues
 
 /**
  * A list item for a [CallFilter].
  *
  * @param callFilter The call filter to display.
- * @param modifier The modifier.
  */
 @Composable
 fun CallFilterListItem(
     callFilter: CallFilter,
     modifier: Modifier = Modifier,
+    padding: PaddingValues = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(padding),
     ) {
         Row(
             modifier = Modifier
@@ -88,103 +81,13 @@ fun CallFilterListItem(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
-        Row(
+        FilterActionIndicator(
+            action = callFilter.action,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            BlockActionIcon(callFilter)
-            RingActionIcon(callFilter)
-            NotificationActionIcon(callFilter)
-            CallLogActionIcon(callFilter)
-        }
+        )
     }
-}
-
-@Composable
-private fun CallLogActionIcon(callFilter: CallFilter) {
-    Icon(
-        painter = painterResource(
-            when (callFilter.action.callLog) {
-                true -> R.drawable.ic_m3_chat_bubble
-                false -> R.drawable.ic_m3_chat_bubble_off
-                null -> R.drawable.ic_m3_chat_dashed
-            }
-        ),
-        contentDescription = stringResource(
-            when (callFilter.action.callLog) {
-                true -> R.string.filter_action_call_log_on_description
-                false -> R.string.filter_action_call_log_off_description
-                null -> R.string.filter_action_system_default_description
-            }
-        ),
-        tint = statusColor(callFilter.action.callLog),
-    )
-}
-
-@Composable
-private fun NotificationActionIcon(callFilter: CallFilter) {
-    Icon(
-        painter = painterResource(
-            when (callFilter.action.notification) {
-                true -> R.drawable.ic_m3_notifications
-                false -> R.drawable.ic_m3_notifications_off
-                null -> R.drawable.ic_m3_notifications
-            }
-        ),
-        contentDescription = stringResource(
-            when (callFilter.action.notification) {
-                true -> R.string.filter_action_notification_on_description
-                false -> R.string.filter_action_notification_off_description
-                null -> R.string.filter_action_system_default_description
-            }
-        ),
-        tint = statusColor(callFilter.action.notification),
-    )
-}
-
-@Composable
-private fun RingActionIcon(callFilter: CallFilter) {
-    Icon(
-        painter = painterResource(
-            when (callFilter.action.ring) {
-                true -> R.drawable.ic_m3_mobile_sound
-                false -> R.drawable.ic_m3_mobile_sound_off
-                null -> R.drawable.ic_m3_mobile
-            }
-        ),
-        contentDescription = stringResource(
-            when (callFilter.action.ring) {
-                true -> R.string.filter_action_ring_on_description
-                false -> R.string.filter_action_ring_off_description
-                null -> R.string.filter_action_system_default_description
-            }
-        ),
-        tint = statusColor(callFilter.action.ring),
-    )
-}
-
-@Composable
-private fun BlockActionIcon(callFilter: CallFilter) {
-    Icon(
-        painter = painterResource(
-            when (callFilter.action.block) {
-                BlockType.HANGUP -> R.drawable.ic_m3_phone_cancel
-                BlockType.IGNORE -> R.drawable.ic_m3_phone_missed
-                null -> R.drawable.ic_m3_phone_enabled
-            }
-        ),
-        contentDescription = stringResource(
-            when (callFilter.action.block) {
-                BlockType.HANGUP -> R.string.filter_action_block_hangup_description
-                BlockType.IGNORE -> R.string.filter_action_block_ignore_description
-                null -> R.string.filter_action_system_default_description
-            }
-        ),
-        tint = statusColor(callFilter.action.block)
-    )
 }
 
 @PreviewLightDark
