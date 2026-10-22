@@ -16,7 +16,6 @@ kotlin {
     jvmToolchain(21)
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_17)
-        freeCompilerArgs.add("-Xannotation-default-target=param-property")
         optIn.addAll(
             "androidx.compose.material3.ExperimentalMaterial3Api",
             "androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi",
@@ -35,8 +34,8 @@ android {
         applicationId = "alt.foss.brunothg.tacl"
         minSdk = 29
         targetSdk = 37
-        versionCode = 100
-        versionName = "0.1.0"
+        versionCode = 200
+        versionName = "0.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
