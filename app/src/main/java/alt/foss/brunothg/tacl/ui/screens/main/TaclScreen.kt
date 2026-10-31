@@ -17,13 +17,13 @@ import alt.foss.brunothg.tacl.bl.repository.CallFilterRepository
 import alt.foss.brunothg.tacl.misc.ID
 import alt.foss.brunothg.tacl.misc.LoadState
 import alt.foss.brunothg.tacl.misc.LoadState.Loading.valueOrNull
-import alt.foss.brunothg.tacl.ui.components.misc.BackButton
-import alt.foss.brunothg.tacl.ui.components.misc.LoadingIndicator
-import alt.foss.brunothg.tacl.ui.components.permission.PermissionIndicator
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterEditor
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterEditorUiState
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterEditorUiState.Companion.toUiState
 import alt.foss.brunothg.tacl.ui.components.filter.CallFilterListItem
+import alt.foss.brunothg.tacl.ui.components.misc.BackButton
+import alt.foss.brunothg.tacl.ui.components.misc.LoadingIndicator
+import alt.foss.brunothg.tacl.ui.components.permission.PermissionIndicator
 import alt.foss.brunothg.tacl.ui.components.permission.rememberPermissionRequestLauncher
 import alt.foss.brunothg.tacl.ui.misc.Delayed
 import alt.foss.brunothg.tacl.ui.misc.PreviewUtils.withPreviewFallback
@@ -582,7 +582,6 @@ private fun TaclDetailPaneScaffold(
     onChangeEditorState: (CallFilterEditorUiState) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val selectedItem = state.getSelectedCalFilter(selection)
     val editorState = state.editorState
 
     Scaffold(
@@ -613,10 +612,7 @@ private fun TaclDetailPaneScaffold(
                     .padding(padding)
                     .verticalScroll(rememberScrollState())
                     .padding(
-                        bottom = if (selectedItem != null)
-                            (56 /*FAB*/ + (16 * 2 /*FAB padding*/)).dp
-                        else
-                            0.dp
+                        bottom = (56 /*FAB*/ + (16 * 2 /*FAB padding*/)).dp
                     ),
             ) {
                 TaclDetailPane(
