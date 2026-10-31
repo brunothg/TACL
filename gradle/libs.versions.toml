@@ -1,29 +1,29 @@
 [versions]
-agp = "9.4.1"
-kotlin = "2.4.20"
-ksp = "2.3.9"
+agp = "9.5.0"
+kotlin = "2.4.21"
+ksp = "2.3.13"
 
-libphonenumber = "9.0.39"
-kotlinxSerializationJson = "1.11.0"
+libphonenumber = "9.0.42"
+kotlinxSerializationJson = "1.12.0"
 
 junit = "6.1.3"
-junitVersion = "1.3.0"
+junitAndroid = "1.3.0"
 espressoCore = "3.7.0"
 
-core = "1.19.0"
+core = "1.19.1"
 lifecycle = "2.11.0"
 coreSplashscreen = "1.2.0"
-datastorePreferences = "1.2.1"
-paging = "3.5.1"
+datastorePreferences = "1.3.0"
+paging = "3.5.3"
 
 hilt = "2.60.1"
 hiltAndroid = "1.4.0"
 room = "2.8.5"
-aboutLibraries = "15.2.0"
+aboutLibraries = "15.3.0"
 
 composeBom = "2026.09.00"
 activityCompose = "1.13.0"
-navigationCompose = "2.10.1"
+navigationCompose = "2.10.2"
 
 
 [libraries]
@@ -32,7 +32,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitAndroid" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core" }
@@ -61,7 +61,6 @@ androidx-compose-material3-adaptive-navigation = { group = "androidx.compose.mat
 androidx-compose-material3-adaptive-navigation-suite = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite" }
 
 aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutLibraries" }
-aboutlibraries-compose-core = { module = "com.mikepenz:aboutlibraries-compose-core", version.ref = "aboutLibraries" }
 aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
 
 
