@@ -161,6 +161,7 @@ fun SetupScaffold(
     ),
     onDone: () -> Unit = {},
 ) {
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val pagerState = rememberPagerState {
         uiState.pages.valueOrNull()?.size ?: 0
@@ -168,10 +169,25 @@ fun SetupScaffold(
     val onReady: (ready: Boolean, pageIndex: Int) -> Unit = { ready, _ ->
         viewModel.onReady(ready)
     }
-    val onDone: () -> Unit = {
+    val onPreviousPage: (() -> Unit)? = {
+        viewModel.onReady(false)
+        coroutineScope.launch {
+            pagerState.animateScrollToPreviousPage()
+        }
+        Unit
+    }.takeIf { !pagerState.isFirstPage() }
+    val onNextPage: (() -> Unit)? = {
+        viewModel.onReady(false)
+        coroutineScope.launch {
+            pagerState.animateScrollToNextPage()
+        }
+        Unit
+    }.takeIf { uiState.isReady && !pagerState.isLastPage() }
+    val onDone: (() -> Unit)? = {
+        viewModel.onReady(false)
         onDone()
         viewModel.onDone()
-    }
+    }.takeIf { uiState.isReady && pagerState.isLastPage() }
 
     when (val pagesState = uiState.pages) {
         is LoadState.Loading -> {
@@ -194,6 +210,8 @@ fun SetupScaffold(
                     state = uiState,
                     pagerState = pagerState,
                     onReady = onReady,
+                    onPreviousPage = onPreviousPage,
+                    onNextPage = onNextPage,
                     onDone = onDone,
                 )
             }
@@ -206,7 +224,9 @@ fun SetupScaffold(
 private fun SetupSurface(
     state: SetupUiState,
     pagerState: PagerState,
-    onDone: () -> Unit,
+    onPreviousPage: (() -> Unit)?,
+    onNextPage: (() -> Unit)?,
+    onDone: (() -> Unit)?,
     onReady: (ready: Boolean, pageIndex: Int) -> Unit,
 ) {
     Surface(
@@ -233,8 +253,8 @@ private fun SetupSurface(
                     .fillMaxWidth(),
             ) {
                 PagerNavButtons(
-                    state = state,
-                    pagerState = pagerState,
+                    onPreviousPage = onPreviousPage,
+                    onNextPage = onNextPage,
                     onDone = onDone,
                     modifier = Modifier
                         .padding(4.dp)
@@ -252,43 +272,19 @@ private fun SetupSurface(
 
 @Composable
 private fun PagerNavButtons(
-    state: SetupUiState,
-    pagerState: PagerState,
-    onDone: () -> Unit,
+    onPreviousPage: (() -> Unit)?,
+    onNextPage: (() -> Unit)?,
+    onDone: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
-    val coroutineScope: CoroutineScope = rememberCoroutineScope()
-    val canGoBack = { !pagerState.isFirstPage() }
-    val canGoNext = { state.isReady }
-    val nextPage: () -> Unit = {
-        if (canGoNext()) {
-            if (pagerState.isLastPage()) {
-                onDone()
-            } else {
-                coroutineScope.launch {
-                    pagerState.animateScrollToNextPage()
-                }
-            }
-        }
-
-    }
-    val previousPage: () -> Unit = {
-        if (canGoBack()) {
-            coroutineScope.launch {
-                pagerState.animateScrollToPreviousPage()
-            }
-        }
-    }
-
-
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier,
     ) {
-        if (canGoBack()) {
+        if (onPreviousPage != null) {
             OutlinedIconButton(
-                onClick = previousPage
+                onClick = onPreviousPage,
             ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_m3_arrow_back),
@@ -303,10 +299,10 @@ private fun PagerNavButtons(
         }
 
         FilledIconButton(
-            enabled = canGoNext(),
-            onClick = nextPage
+            enabled = onDone != null || onNextPage != null,
+            onClick = onDone ?: onNextPage ?: {},
         ) {
-            if (pagerState.isLastPage()) {
+            if (onDone != null) {
                 Icon(
                     painter = painterResource(R.drawable.ic_m3_check),
                     contentDescription = stringResource(R.string.misc_action_done),
