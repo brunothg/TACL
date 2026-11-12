@@ -57,6 +57,29 @@ Without it may be impossible to provide standardized phone numbers or country fo
 
 ---
 
+## Background Execution and Potential Blockers
+
+Even when permissions and the call screening role are correctly granted, TACL's ability to screen calls can be affected by system-level restrictions and device-specific behaviors.
+
+### 1. Background Execution & Battery Optimization
+* **Unrestricted Battery Usage**:
+  Android's doze mode, app standby, and aggressive OEM power management can suspend or terminate background tasks.
+  TACL must be allowed to run in the background.
+* **Auto-Start & Background Launch**:
+  On many manufacturer ROMs, apps require explicit permission in system settings to "Auto-Start" or run background services.
+  Without this, the system may prevent TACL from responding to incoming calls.
+
+### 2. Other Potential Blockers
+* **OEM Custom ROMs / Aggressive Task Killers**:
+  Some manufacturer ROMs aggressively terminate background services or block call screening components.
+* **Default Phone App / Dialer Conflicts**:
+  Certain default phone apps or OEM dialers may conflict with or override third-party call screening services.
+  Ensure TACL remains selected as the system call screening app in system settings.
+* **Revoked Roles / Permissions**:
+  If permissions or the Call Screening role are revoked by the system or user, the service will stop functioning.
+
+---
+
 ## Security and Privacy
 
 * **Privacy**: TACL processes call data locally on the device.

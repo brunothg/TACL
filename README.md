@@ -15,6 +15,16 @@ to intercept and manage incoming calls, ensuring you only hear from the people y
   <img alt="App Icon" src="fastlane/metadata/android/en-US/images/icon.png" width="128" />
 </div>
 
+> [!IMPORTANT]
+> **Important Compatibility Note:**  
+> TACL is based on Android's `CallScreeningService` and will not work if blocked by the phone manufacturer, custom ROM, or certain default phone apps.
+> It is also required that the necessary system roles and permissions are granted — see the [Permissions](docs/Permissions.md) guide for details.
+
+> [!NOTE]
+> **Testing Scope:**  
+> The app is mainly tested against Android Virtual Devices (AVD) and a small selection of available real-life phones.
+> For issues caused by a specific device or ROM, no support can be given.
+
 ## Key Features
 
 - **Regex Matching**: Match incoming numbers using powerful regular expressions.
