@@ -10,14 +10,21 @@ This guide explains how to install TACL on your Android device using different m
 - Application ID: `alt.foss.brunothg.tacl`
 - SHA-256 fingerprint: `8da0de10ea4b5baa578b2e0fe3a64f821214b233ccec653c458a05aa42b66034`
 
-## Method 1: Obtainium
+## Method 1: IzzyOnDroid
+IzzyOnDroid is an alternative FOSS F-Droid compatible repository that provides automatic updates for TACL.
+
+1. Open your F-Droid client (or an F-Droid compatible client).
+2. Add the IzzyOnDroid repository (`https://apt.izzysoft.de/fdroid/`) if you haven't already.
+3. Search for **TACL** and install it, or visit the [IzzyOnDroid package page](https://apt.izzysoft.de/packages/alt.foss.brunothg.tacl) to download the APK directly.
+
+## Method 2: Obtainium
 Obtainium allows you to install and update Open Source apps directly from their release pages (Codeberg, GitHub, GitLab, etc.).
 
 1. Install [Obtainium](https://github.com/ImranR98/Obtainium).
 2. Add the App Source: `https://codeberg.org/brunothg/TACL`
 3. Click **Install**.
 
-## Method 2: ADB (Manual Installation)
+## Method 3: ADB (Manual Installation)
 If you are a power user and want to install the APK manually using Android Debug Bridge (ADB).
 
 1. Download the latest APK from the [Releases page](https://codeberg.org/brunothg/TACL/releases).

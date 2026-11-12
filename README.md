@@ -2,6 +2,12 @@
 
 ***Telephone Access Control List (TACL)***
 
+[![Latest Release](https://codeberg.org/brunothg/TACL/badges/release.svg)](https://codeberg.org/brunothg/TACL/releases)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![Reproducable Build](https://shields.rbtlog.dev/simple/alt.foss.brunothg.tacl)](https://shields.rbtlog.dev/alt.foss.brunothg.tacl)
+[![IzzyOnDroid](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/alt.foss.brunothg.tacl&label=IzzyOnDroid)](https://apt.izzysoft.de/packages/alt.foss.brunothg.tacl)
+[![Obtainium](https://img.shields.io/badge/Obtainium-Compatible-brightgreen)](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://codeberg.org/brunothg/TACL)
+
 TACL is a powerful call filtering app for Android power users. It allows you to define complex rules
 to intercept and manage incoming calls, ensuring you only hear from the people you want.
 
@@ -20,6 +26,10 @@ to intercept and manage incoming calls, ensuring you only hear from the people y
 
 For detailed instructions on how to install TACL, please see
 the [Installation Guide](docs/InstallationGuide.md).
+
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png"
+alt="Get it on IzzyOnDroid"
+height="60">](https://apt.izzysoft.de/packages/alt.foss.brunothg.tacl)
 
 [<img src="https://github.com/ImranR98/Obtainium/blob/main/assets/graphics/badge_obtainium.png?raw=true"
 alt="Get it on Obtainium"
