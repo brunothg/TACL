@@ -21,8 +21,8 @@ Controls whether a missed call notification should be shown after a call is bloc
 - **Note**: Only works if **Block** is also active.
 
 ### 4. Call Log
-Controls whether the call should appear in your device's call log.
-- **Note**: Only works if **Block** is also active.
+Controls whether the call should appear in your device's call and the app's filter log.
+- **Note**: May only works for device's call log if **Block** is also active.
 
 ## Technical Specialties & Limitations
 

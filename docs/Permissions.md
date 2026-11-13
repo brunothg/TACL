@@ -43,7 +43,7 @@ Defined in the `AndroidManifest.xml` for the `TaclService`.
     * If a third-party app tries to bind to this service, the system will prevent it because
       the app won't hold this system-level permission.
 
-### Read Phone State (`android.permission.READ_PHONE_STATE`) - *Optional*
+### Read Phone State (`READ_PHONE_STATE`) - *Optional*
 
 The app contains logic that utilize `READ_PHONE_STATE` especially in multi-SIM environments
 for identification of the SIM card region.
