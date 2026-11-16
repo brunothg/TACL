@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Usage & help
+    about: The projects documentation
+    url: https://codeberg.org/brunothg/TACL/src/branch/main/README.md
