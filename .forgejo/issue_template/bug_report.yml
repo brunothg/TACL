@@ -1,0 +1,114 @@
+name: Bug Report
+about: Report a bug like a crash, visual glitch or unexpected behavior in the app
+title: '[Bug]: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out the fields below so we can reproduce and maybe fix the issue quickly.
+        Also you may consider helping and open a pull request.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Give a clear and concise description of what the bug is.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce the bug
+      description: Step by step instructions to trigger the issue.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect the app to do?
+      render: text
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install-source
+    attributes:
+      label: Installation source
+      description: Where did you install the app from?
+      options:
+        - IzzyOnDroid
+        - Obtainium
+        - Codeberg
+        - Built from source
+        - Other (specify)
+    validations:
+      required: true
+
+  - type: input
+    id: install-source-other
+    attributes:
+      label: Other install source
+      description: If you selected "Other" above, please enter your exact install source.
+    validations:
+      required: false
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Android version
+      description: On which android version did it happen?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device Model
+      description: Select a known test device.
+      options:
+        - Google Pixel 9
+        - Google Pixel 4a
+        - Android Virtual Device (AVD/Emulator)
+        - Other (specify)
+    validations:
+      required: true
+
+  - type: input
+    id: device-other
+    attributes:
+      label: Other device
+      description: If you selected "Other" above, please enter your exact device model (and ROM if applicable).
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: avd-reproducible
+    attributes:
+      label: Emulator/AVD Reproducibility
+      options:
+        - label: Reproducible on an Android Virtual Device (AVD / Emulator)
+          required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/Crash stack trace
+      description: Paste relevant logcat output or crash logs if available.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Screenshots & additional context
+      description: Drag and drop screenshots or screen recordings here, or add extra details.
+    validations:
+      required: false

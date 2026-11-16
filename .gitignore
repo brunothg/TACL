@@ -7,6 +7,9 @@ build/
 .local/
 local.properties
 
+# Hidden Whitelist
+!.forgejo/
+
 # Log/OS Files
 *.log
 
