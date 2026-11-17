@@ -21,10 +21,10 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  * Abstract base class for relaxed collection types supporting array, single and null value types.
  *
  * ```kotlin
- * @Serializable(with = SingleOrListSerializer::class)
+ * @Serializable(with = JsonRelaxedCollectionSerializer::class)
  * val stringList: List<String>
  *
- * @Serializable(with = SingleOrSetSerializer::class)
+ * @Serializable(with = JsonRelaxedCollectionSerializer::class)
  * val stringSet: Set<String>? = null
  * ```
  *
