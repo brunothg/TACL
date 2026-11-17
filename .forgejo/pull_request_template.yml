@@ -1,0 +1,23 @@
+name: Pull Request
+about: Submit changes to this repository
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe your changes clearly.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Mandatory Attestations
+      description: You must confirm both items before submitting.
+      options:
+        - label: I read CONTRIBUTING.md, comply and agree.
+          required: true
+        - label: My commits include a `Signed-off-by:` trailer (`git commit -s`).
+          required: true
+        - label: I confirm that no AI was used to generate code in this pull request.
+          required: true
